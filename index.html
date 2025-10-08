@@ -1,28 +1,346 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>USDT 시세 매매 도우미</title>
+  <title>Smart AI Company - AI-Powered App Development</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid #667eea;
+      background: white;
+      color: #667eea;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover, .lang-btn.active {
+      background: #667eea;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease 0.4s both;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Services Section */
+    .services {
+      background: white;
+      padding: 5rem 2rem;
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #667eea;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 2rem;
+      border-radius: 15px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* About Section */
+    .about {
+      background: #f8f9fa;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #667eea;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* Contact Section */
+    .contact {
+      background: white;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #667eea;
+    }
+
+    .contact-info {
+      font-size: 1.3rem;
+      color: #555;
+    }
+
+    .contact-info a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: #764ba2;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .services h2, .about h2, .contact h2 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>USDT 시세 매매 도우미 앱</h1>
-  <p>환율과 김치 프리미엄을 실시간으로 분석하여 테더 매매 타이밍을 알려주는 앱입니다.</p>
-  
-  <h2>📱 주요 기능</h2>
-  <ul>
-    <li>김치 프리미엄 자동 계산</li>
-    <li>AI 기반 매수/매도 타이밍 알림</li>
-    <li>환율 + 테더 가격 실시간 시각화</li>
-  </ul>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Smart AI Company</div>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="changeLanguage('ko')">KO</button>
+    </div>
+  </nav>
 
-  <h2>🔗 다운로드</h2>
-  <p><a href="https://apps.apple.com/us/app/usdt-signal/id6746846210">https://apps.apple.com/us/app/usdt-signal/id6746846210</a></p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 data-en="Welcome to Smart AI Company" data-ko="Smart AI Company에 오신 것을 환영합니다">Welcome to Smart AI Company</h1>
+    <p data-en="Transforming Ideas into Intelligent Applications" data-ko="아이디어를 지능형 애플리케이션으로 변환합니다">Transforming Ideas into Intelligent Applications</p>
+    <a href="#contact" class="cta-button" data-en="Get In Touch" data-ko="문의하기">Get In Touch</a>
+  </section>
 
-  <h2>🔐 개인정보처리방침</h2>
-  <p><a href="https://smartcompany.github.io/flutter_gimchi/web/privacy.html">개인정보처리방침 보기</a></p>
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <h2 data-en="Our Services" data-ko="우리의 서비스">Our Services</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="icon">🤖</div>
+          <h3 data-en="AI Integration" data-ko="AI 통합">AI Integration</h3>
+          <p data-en="Seamlessly integrate cutting-edge AI technologies into your applications for enhanced functionality and user experience." data-ko="최첨단 AI 기술을 애플리케이션에 원활하게 통합하여 향상된 기능과 사용자 경험을 제공합니다.">Seamlessly integrate cutting-edge AI technologies into your applications for enhanced functionality and user experience.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">📱</div>
+          <h3 data-en="Mobile App Development" data-ko="모바일 앱 개발">Mobile App Development</h3>
+          <p data-en="Create powerful, intuitive mobile applications for iOS and Android platforms that leverage the latest AI capabilities." data-ko="최신 AI 기능을 활용하는 iOS 및 Android 플랫폼용 강력하고 직관적인 모바일 애플리케이션을 만듭니다.">Create powerful, intuitive mobile applications for iOS and Android platforms that leverage the latest AI capabilities.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">💡</div>
+          <h3 data-en="Smart Solutions" data-ko="스마트 솔루션">Smart Solutions</h3>
+          <p data-en="Develop intelligent solutions tailored to your business needs, from machine learning models to automated systems." data-ko="머신러닝 모델부터 자동화 시스템까지 비즈니스 요구에 맞춘 지능형 솔루션을 개발합니다.">Develop intelligent solutions tailored to your business needs, from machine learning models to automated systems.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon">🚀</div>
+          <h3 data-en="Innovation & Strategy" data-ko="혁신 및 전략">Innovation & Strategy</h3>
+          <p data-en="Consulting services to help you navigate the AI landscape and implement innovative strategies for growth." data-ko="AI 환경을 탐색하고 성장을 위한 혁신적인 전략을 구현할 수 있도록 컨설팅 서비스를 제공합니다.">Consulting services to help you navigate the AI landscape and implement innovative strategies for growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <h2>📧 문의</h2>
-  <p>gunnylove@gmail.com</p>
+  <!-- About Section -->
+  <section class="about">
+    <div class="container">
+      <h2 data-en="About Us" data-ko="회사 소개">About Us</h2>
+      <p data-en="Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value." data-ko="Smart AI Company는 AI 기반 애플리케이션 개발의 최전선에 있습니다. 우리는 기술적 우수성과 창의적 혁신을 결합하여 기대를 충족시킬 뿐만 아니라 그것을 뛰어넘는 솔루션을 제공합니다. 우리의 전문가 팀은 복잡한 AI 기술을 실질적인 비즈니스 가치를 창출하는 사용자 친화적인 애플리케이션으로 변환하는 데 특화되어 있습니다.">Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 data-en="Contact Us" data-ko="연락처">Contact Us</h2>
+      <div class="contact-info">
+        <p data-en="Ready to bring your AI project to life?" data-ko="AI 프로젝트를 실현할 준비가 되셨나요?">Ready to bring your AI project to life?</p>
+        <p data-en="Email us at:" data-ko="이메일:">Email us at:</p>
+        <p><a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Smart AI Company. <span data-en="All rights reserved." data-ko="모든 권리 보유.">All rights reserved.</span></p>
+  </footer>
+
+  <script>
+    let currentLang = 'en';
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      
+      // Update button states
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      // Update all translatable elements
+      document.querySelectorAll('[data-en]').forEach(element => {
+        if (lang === 'en') {
+          element.textContent = element.getAttribute('data-en');
+        } else if (lang === 'ko') {
+          element.textContent = element.getAttribute('data-ko');
+        }
+      });
+
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+    }
+  </script>
 </body>
 </html>
