@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | Tesla Map Bridge</title>
+  <style>
+    :root{color-scheme:light dark}
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans", "Noto Sans KR", sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #222; background:#fff; }
+    header { position: sticky; top:0; background:#fff; border-bottom:1px solid #eee; padding: 12px 16px; display:flex; gap:12px; align-items:center; z-index:10; }
+    header a { text-decoration:none; color:#555; padding:6px 10px; border-radius:8px; border:1px solid #ddd; }
+    header a.active { background:#f3f4f6; font-weight:600; }
+    main { max-width: 880px; margin: 24px auto; padding: 0 16px 64px; }
+    h1 { font-size: 1.8rem; margin-top: 0; }
+    h2 { margin-top: 2rem; }
+    code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", monospace; }
+    ul { padding-left: 1.2rem; }
+    footer { border-top:1px solid #eee; margin-top: 48px; padding-top: 16px; color:#666; }
+    .note{background:#f8fafc;border:1px solid #e5e7eb;padding:10px 12px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Tesla Map Bridge — Privacy Policy</strong>
+    <div style="flex:1"></div>
+    <a href="#en" id="btn-en" class="active">English</a>
+    <a href="#ko" id="btn-ko">한국어</a>
+  </header>
+
+  <main>
+    <!-- English -->
+    <section id="en" aria-label="English">
+      <h1>Privacy Policy</h1>
+      <p><strong>Tesla Map Bridge</strong> (“the App”, “we”, “our”) respects your privacy. This policy describes the data we collect, how we use and store it, the partners who assist us, and the choices available to you.</p>
+
+      <div class="note"><strong>Summary:</strong> We use your Tesla account tokens, selected destinations, and device location only to deliver navigation and related services. We do not collect biometric identifiers or sell personal data.</div>
+
+      <h2>1. Data We Collect</h2>
+      <ul>
+        <li><strong>Tesla Account Tokens &amp; Profile</strong>: access token, refresh token, token expiry, and Tesla user identifier (email or sub) obtained through Tesla OAuth. Tokens are stored in encrypted secure storage on your device.</li>
+        <li><strong>Navigation Information</strong>: destinations you search or send to your vehicle, coordinates selected on the map, and recent drive history saved on your device.</li>
+        <li><strong>Location Data</strong>: your current GPS location (when permission is granted) to center the map and send navigation commands. We do not track location in the background outside of navigation requests.</li>
+        <li><strong>Usage Quota Data</strong>: Tesla user ID and remaining free quota stored in our Supabase database to manage trial usage and subscription status.</li>
+        <li><strong>Device &amp; Diagnostics</strong>: basic device metadata, crash logs, and analytics events collected via Firebase Analytics/Crashlytics to maintain service quality.</li>
+        <li><strong>Push Notification Tokens</strong>: APNs/FCM tokens used to deliver alerts about navigation status or account events.</li>
+        <li><strong>In-app Purchase Records</strong>: subscription purchase receipts and transaction identifiers processed through Apple to unlock unlimited navigation.</li>
+      </ul>
+
+      <h2>2. How We Use Data</h2>
+      <ul>
+        <li>Authenticate with the Tesla Fleet API and maintain your session.</li>
+        <li>Send navigation, GPS, and waypoint commands to your Tesla vehicle at your request.</li>
+        <li>Display maps, nearby places, and localized search results using Google Maps and Places APIs.</li>
+        <li>Manage free trial quotas, subscription status, and billing records.</li>
+        <li>Provide push notifications and respond to customer support inquiries.</li>
+        <li>Improve stability through crash reports and analytics.</li>
+      </ul>
+
+      <h2>3. Sharing &amp; Processors</h2>
+      <p>We do not sell personal data. We share information only with trusted processors necessary to operate the App:</p>
+      <ul>
+        <li><strong>Tesla, Inc.</strong>: Tesla Fleet API receives navigation commands containing your selected destination and vehicle identifier.</li>
+        <li><strong>Google</strong>: Maps, Places, Geocoding APIs and Firebase services (Analytics, Crashlytics, Messaging).</li>
+        <li><strong>Supabase (PostgreSQL &amp; Auth)</strong>: stores Tesla user ID and remaining quota for the free trial/subscription system.</li>
+        <li><strong>Vercel</strong>: hosts the API endpoints that proxy Tesla credentials and quota management.</li>
+        <li><strong>Apple</strong>: processes App Store purchases and maintains subscription receipts.</li>
+      </ul>
+      <p>Navigation history is stored locally on your device. We do not transmit it to other parties except when you explicitly send a destination to Tesla.</p>
+
+      <h2>4. Retention &amp; Deletion</h2>
+      <ul>
+        <li><strong>Tesla tokens</strong> remain on your device until you sign out or delete the App.</li>
+        <li><strong>Quota data</strong> in Supabase is retained while you use the App and deleted within 30 days of an account deletion request.</li>
+        <li><strong>Analytics and crash logs</strong> are retained according to Firebase default lifetimes (up to 26 months) and aggregated thereafter.</li>
+        <li>Deletion requests: contact <a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a> and we will remove server-side data within 30 days.</li>
+      </ul>
+
+      <h2>5. Your Rights</h2>
+      <ul>
+        <li>Access, correct, or delete your information by emailing us.</li>
+        <li>Withdraw optional permissions such as location or notifications through your device settings.</li>
+        <li>Unsubscribe from in-app purchases through your Apple ID settings.</li>
+      </ul>
+
+      <h2>6. Children</h2>
+      <p>The App is intended for users eligible to hold a Tesla account (typically 14+ or as defined by local law). We do not knowingly collect data from children below the minimum age.</p>
+
+      <h2>7. Security</h2>
+      <p>We protect data with encrypted network connections (HTTPS), secure token storage, access controls, and regular monitoring of backend services.</p>
+
+      <h2>8. Contact</h2>
+      <p>Email: <a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a></p>
+
+      <footer>
+        <div>Effective date: 2025-11-12</div>
+        <div>Version: 1.0</div>
+      </footer>
+    </section>
+
+    <!-- Korean -->
+    <section id="ko" aria-label="Korean" style="display:none">
+      <h1>개인정보 처리방침</h1>
+      <p><strong>Tesla Map Bridge</strong>(이하 “앱”, “당사”)는 이용자의 개인정보를 소중하게 다룹니다. 본 방침은 수집 항목, 이용 목적, 보관 방법, 제공 대상 및 이용자 권리를 설명합니다.</p>
+
+      <div class="note"><strong>요약:</strong> 테슬라 계정 토큰과 사용자가 선택한 목적지, 기기 위치는 길 안내를 제공하기 위해서만 사용되며 제3자에게 판매하지 않습니다.</div>
+
+      <h2>1. 수집 항목</h2>
+      <ul>
+        <li><strong>테슬라 계정 토큰 및 식별자</strong>: Tesla OAuth를 통해 취득한 액세스 토큰, 리프레시 토큰, 만료 시각, 사용자 ID(이메일 또는 sub). 토큰은 기기의 보안 저장소에 암호화된 상태로 보관됩니다.</li>
+        <li><strong>길 안내 정보</strong>: 사용자가 검색하거나 차량으로 전송한 목적지, 좌표, 최근 주행 기록(기기 내 저장).</li>
+        <li><strong>위치 정보</strong>: 지도 중심 설정과 차량 길 안내 전송을 위해 위치 권한을 허용한 경우에만 현재 GPS 위치를 사용합니다. 앱 외부에서 지속적으로 추적하지 않습니다.</li>
+        <li><strong>이용 한도 정보</strong>: 무료 체험/구독 관리를 위해 Supabase에 저장되는 Tesla 사용자 ID와 남은 이용 횟수.</li>
+        <li><strong>기기 및 진단 정보</strong>: Firebase Analytics/Crashlytics를 통한 기본 기기 정보, 오류 로그.</li>
+        <li><strong>푸시 알림 토큰</strong>: FCM/APNs 토큰을 사용해 계정 및 서비스 알림을 전송합니다.</li>
+        <li><strong>인앱 결제 기록</strong>: 무제한 구독을 활성화하기 위한 Apple 결제 영수증 및 거래 식별자.</li>
+      </ul>
+
+      <h2>2. 이용 목적</h2>
+      <ul>
+        <li>테슬라 플릿 API 인증 유지 및 세션 관리</li>
+        <li>사용자 요청에 따라 테슬라 차량으로 목적지/좌표 정보를 전송</li>
+        <li>Google 지도/장소 API를 이용한 지도 표시 및 장소 검색</li>
+        <li>무료 체험, 구독 결제, 이용 한도 관리</li>
+        <li>고객 문의 대응 및 서비스 품질 개선</li>
+        <li>사용자가 동의한 푸시 알림 발송</li>
+        <li>앱 안정성 향상을 위한 로그/분석 수집</li>
+      </ul>
+
+      <h2>3. 제3자 제공 및 처리자</h2>
+      <p>개인정보를 판매하지 않으며, 서비스 운영에 필요한 범위에서만 다음 처리자와 정보를 공유합니다.</p>
+      <ul>
+        <li><strong>Tesla, Inc.</strong>: 사용자가 요청한 네비게이션 명령을 전송합니다.</li>
+        <li><strong>Google</strong>: 지도, 장소, 지오코딩 API와 Firebase Analytics/Crashlytics/Messaging.</li>
+        <li><strong>Supabase</strong>: 무료 체험/구독 관련 사용자 ID 및 남은 이용 횟수 저장.</li>
+        <li><strong>Vercel</strong>: Tesla 자격 증명 프록시와 쿼터 API를 호스팅합니다.</li>
+        <li><strong>Apple</strong>: 앱스토어 결제 처리 및 구독 영수증 관리.</li>
+      </ul>
+      <p>최근 주행 기록은 기기 로컬에만 저장되며, 사용자가 차량으로 전송하는 경우에만 Tesla에 전송됩니다.</p>
+
+      <h2>4. 보관 및 삭제</h2>
+      <ul>
+        <li><strong>테슬라 토큰</strong>은 로그아웃 또는 앱 삭제 시까지 기기에 보관됩니다.</li>
+        <li><strong>이용 한도 데이터</strong>는 서비스를 사용하는 동안 유지하며, 계정 삭제 요청 시 30일 이내 삭제합니다.</li>
+        <li><strong>분석/크래시 로그</strong>는 Firebase 정책에 따라 최대 26개월 동안 보관 후 집계 처리됩니다.</li>
+        <li>삭제 요청은 <a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a> 으로 연락해 주세요. 서버 저장 데이터는 30일 이내 삭제합니다.</li>
+      </ul>
+
+      <h2>5. 이용자 권리</h2>
+      <ul>
+        <li>정보 열람, 정정, 삭제를 요청할 수 있습니다.</li>
+        <li>위치·알림 등 선택 권한은 기기 설정에서 언제든 철회할 수 있습니다.</li>
+        <li>구독 해지는 Apple ID 설정의 구독 관리에서 진행할 수 있습니다.</li>
+      </ul>
+
+      <h2>6. 아동</h2>
+      <p>본 앱은 테슬라 계정 이용 자격이 있는 사용자(일반적으로 만 14세 이상)를 대상으로 하며, 그 미만의 아동에 대한 정보를 의도적으로 수집하지 않습니다.</p>
+
+      <h2>7. 보안</h2>
+      <p>HTTPS 통신, 토큰 암호화, 접근 통제 등 업계 표준 보안 조치를 적용하여 개인정보를 보호합니다.</p>
+
+      <h2>8. 문의</h2>
+      <p>이메일: <a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a></p>
+
+      <footer>
+        <div>시행일: 2025-11-12</div>
+        <div>버전: 1.0</div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Simple language toggle based on hash
+    function updateLang() {
+      const hash = window.location.hash || '#en';
+      document.querySelectorAll('header a').forEach(a => a.classList.remove('active'));
+      if (hash.startsWith('#ko')) document.getElementById('btn-ko').classList.add('active');
+      else document.getElementById('btn-en').classList.add('active');
+      document.getElementById('en').style.display = hash.startsWith('#ko') ? 'none' : 'block';
+      document.getElementById('ko').style.display = hash.startsWith('#ko') ? 'block' : 'none';
+    }
+    window.addEventListener('hashchange', updateLang);
+    updateLang();
+  </script>
+</body>
+</html>
