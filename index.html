@@ -4,219 +4,418 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Smart AI Company - AI-Powered App Development</title>
+  <meta name="description" content="Smart AI Company transforms ideas into intelligent applications. AI integration, mobile app development, and smart solutions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <style>
+    :root {
+      --bg: #07070d;
+      --bg-soft: #0c0c15;
+      --surface: rgba(255, 255, 255, 0.03);
+      --surface-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(139, 132, 255, 0.4);
+      --text: #f4f4f6;
+      --text-muted: #9b9ba8;
+      --accent: #8b84ff;
+      --accent-2: #5eead4;
+      --accent-3: #f0abfc;
+      --gradient: linear-gradient(120deg, #8b84ff, #5eead4 55%, #f0abfc);
+      --radius: 20px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    ::selection {
+      background: rgba(139, 132, 255, 0.35);
+      color: #fff;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(60rem 40rem at 85% -10%, rgba(139, 132, 255, 0.14), transparent 60%),
+        radial-gradient(50rem 35rem at -10% 25%, rgba(94, 234, 212, 0.08), transparent 60%),
+        radial-gradient(45rem 40rem at 60% 110%, rgba(240, 171, 252, 0.07), transparent 60%);
+    }
+
+    .ambient::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 20%, transparent 75%);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
     /* Navigation */
     nav {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 7, 13, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
     }
 
     .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--gradient);
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #07070d;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
     }
 
     .lang-switch {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem;
     }
 
     .lang-btn {
-      padding: 0.5rem 1rem;
-      border: 2px solid #667eea;
-      background: white;
-      color: #667eea;
+      padding: 0.35rem 0.85rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
 
-    .lang-btn:hover, .lang-btn.active {
-      background: #667eea;
-      color: white;
+    .lang-btn:hover {
+      color: var(--text);
     }
 
-    /* Hero Section */
+    .lang-btn.active {
+      background: var(--gradient);
+      color: #07070d;
+    }
+
+    /* Hero */
     .hero {
       text-align: center;
-      padding: 6rem 2rem;
-      color: white;
+      padding: 8.5rem 1.5rem 7rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 12px var(--accent-2);
+      animation: pulse 2.4s ease-in-out infinite;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      animation: fadeInUp 1s ease;
+      font-size: clamp(2.6rem, 6.5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin: 0 auto 1.4rem;
+      max-width: 17ch;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 .grad {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
     }
 
     .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      animation: fadeInUp 1s ease 0.2s both;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 42ch;
+      margin: 0 auto 2.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
     }
 
-    .cta-button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: white;
-      color: #667eea;
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
       text-decoration: none;
-      border-radius: 50px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      animation: fadeInUp 1s ease 0.4s both;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    .btn-primary {
+      background: var(--gradient);
+      color: #07070d;
+      box-shadow: 0 8px 32px rgba(139, 132, 255, 0.35);
     }
 
-    /* Container */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(139, 132, 255, 0.5);
     }
 
-    /* Services Section */
-    .services {
-      background: white;
-      padding: 5rem 2rem;
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
     }
 
-    .services h2 {
+    .btn-ghost:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-head {
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      color: #667eea;
+      margin-bottom: 3.5rem;
     }
 
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .section-head .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      max-width: 52ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Services */
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
     }
 
     .service-card {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 2rem;
-      border-radius: 15px;
-      color: white;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem 1.75rem;
+      border-radius: var(--radius);
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     }
 
     .service-card:hover {
-      transform: translateY(-10px);
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .service-card p {
-      font-size: 1rem;
-      line-height: 1.6;
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
     }
 
     .icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, rgba(139, 132, 255, 0.18), rgba(94, 234, 212, 0.12));
+      border: 1px solid rgba(139, 132, 255, 0.25);
+      margin-bottom: 1.4rem;
     }
 
-    /* Apps Section */
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Apps */
     .apps {
-      background: #f8f9fa;
-      padding: 5rem 2rem;
-    }
-
-    .apps h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #667eea;
-    }
-
-    .apps .subtitle {
-      text-align: center;
-      font-size: 1.2rem;
-      color: #666;
-      margin-bottom: 3rem;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
     }
 
     .app-card {
-      background: white;
-      border-radius: 15px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .app-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
     }
 
     .app-image {
-      width: 100%;
-      height: 200px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
+      height: 150px;
+      display: grid;
+      place-items: center;
+      font-size: 3.25rem;
       position: relative;
+      border-bottom: 1px solid var(--border);
       overflow: hidden;
     }
 
     .app-image::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      inset: 0;
+      background:
+        radial-gradient(20rem 12rem at 30% 0%, rgba(139, 132, 255, 0.22), transparent 65%),
+        radial-gradient(16rem 10rem at 85% 100%, rgba(94, 234, 212, 0.14), transparent 65%);
+    }
+
+    .app-image span {
+      position: relative;
+      filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease;
+    }
+
+    .app-card:hover .app-image span {
+      transform: scale(1.12);
     }
 
     .app-content {
@@ -227,99 +426,148 @@
     }
 
     .app-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #333;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
     }
 
     .app-card p {
-      font-size: 0.95rem;
-      color: #666;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      color: var(--text-muted);
       margin-bottom: 1.5rem;
       flex-grow: 1;
     }
 
     .app-link {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1.4rem;
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      color: var(--text);
       text-decoration: none;
-      border-radius: 25px;
+      border-radius: 999px;
+      font-size: 0.88rem;
       font-weight: 600;
-      text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
+    }
+
+    .app-link::after {
+      content: '→';
+      transition: transform 0.25s ease;
     }
 
     .app-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      background: var(--gradient);
+      border-color: transparent;
+      color: #07070d;
     }
 
-    /* About Section */
-    .about {
-      background: white;
-      padding: 5rem 2rem;
-      text-align: center;
+    .app-link:hover::after {
+      transform: translateX(3px);
     }
 
-    .about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: #667eea;
-    }
-
-    .about p {
-      font-size: 1.2rem;
-      max-width: 800px;
+    /* About */
+    .about-inner {
+      max-width: 760px;
       margin: 0 auto;
-      line-height: 1.8;
-      color: #555;
-    }
-
-    /* Contact Section */
-    .contact {
-      background: #f8f9fa;
-      padding: 5rem 2rem;
       text-align: center;
     }
 
-    .contact h2 {
-      font-size: 2.5rem;
+    .about-inner p {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      padding: 1.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .stat .num {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .stat .label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Contact */
+    .contact-card {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(30rem 18rem at 50% -20%, rgba(139, 132, 255, 0.16), transparent 70%),
+        var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-card > p {
+      color: var(--text-muted);
       margin-bottom: 2rem;
-      color: #667eea;
-    }
-
-    .contact-info {
-      font-size: 1.3rem;
-      color: #555;
-    }
-
-    .contact-info a {
-      color: #667eea;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .contact-info a:hover {
-      color: #764ba2;
+      font-size: 1.02rem;
     }
 
     /* Footer */
     footer {
-      background: #333;
-      color: white;
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
       text-align: center;
-      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Animations */
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(24px);
       }
       to {
         opacity: 1;
@@ -327,69 +575,101 @@
       }
     }
 
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
     /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
       }
 
-      .hero p {
-        font-size: 1.2rem;
+      .hero {
+        padding: 6rem 1.5rem 5rem;
       }
 
-      .services h2, .apps h2, .about h2, .contact h2 {
-        font-size: 2rem;
-      }
-
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .app-grid {
-        grid-template-columns: 1fr;
+      section {
+        padding: 4.5rem 0;
       }
     }
   </style>
 </head>
 <body>
+  <div class="ambient" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav>
-    <div class="logo">Smart AI Company</div>
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
-      <button class="lang-btn" onclick="changeLanguage('ko')">KO</button>
+    <div class="nav-inner">
+      <a class="logo" href="#">
+        <span class="logo-mark">AI</span>
+        <span>Smart AI Company</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services" data-en="Services" data-ko="서비스">Services</a>
+        <a href="#apps" data-en="Apps" data-ko="앱">Apps</a>
+        <a href="#about" data-en="About" data-ko="소개">About</a>
+        <a href="#contact" data-en="Contact" data-ko="연락처">Contact</a>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="changeLanguage('en', this)">EN</button>
+        <button class="lang-btn" onclick="changeLanguage('ko', this)">KO</button>
+      </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <h1 data-en="Welcome to Smart AI Company" data-ko="Smart AI Company에 오신 것을 환영합니다">Welcome to Smart AI Company</h1>
-    <p data-en="Transforming Ideas into Intelligent Applications" data-ko="아이디어를 지능형 애플리케이션으로 변환합니다">Transforming Ideas into Intelligent Applications</p>
-    <a href="#contact" class="cta-button" data-en="Get In Touch" data-ko="문의하기">Get In Touch</a>
-  </section>
+  <header class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span data-en="AI-Powered App Development Studio" data-ko="AI 기반 앱 개발 스튜디오">AI-Powered App Development Studio</span>
+    </div>
+    <h1>
+      <span data-en="Transforming ideas into" data-ko="아이디어를 현실로,">Transforming ideas into</span>
+      <span class="grad" data-en="intelligent applications" data-ko="지능형 애플리케이션">intelligent applications</span>
+    </h1>
+    <p data-en="We build AI-driven products that feel effortless — from concept to launch." data-ko="컨셉부터 출시까지, 자연스럽게 스며드는 AI 제품을 만듭니다.">We build AI-driven products that feel effortless — from concept to launch.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary" data-en="Get In Touch" data-ko="문의하기">Get In Touch</a>
+      <a href="#apps" class="btn btn-ghost" data-en="Explore Our Apps" data-ko="앱 둘러보기">Explore Our Apps</a>
+    </div>
+  </header>
 
   <!-- Services Section -->
-  <section class="services">
+  <section class="services" id="services">
     <div class="container">
-      <h2 data-en="Our Services" data-ko="우리의 서비스">Our Services</h2>
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="What We Do" data-ko="핵심 역량">What We Do</span>
+        <h2 data-en="Our Services" data-ko="우리의 서비스">Our Services</h2>
+      </div>
       <div class="service-grid">
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="icon">🤖</div>
           <h3 data-en="AI Integration" data-ko="AI 통합">AI Integration</h3>
           <p data-en="Seamlessly integrate cutting-edge AI technologies into your applications for enhanced functionality and user experience." data-ko="최첨단 AI 기술을 애플리케이션에 원활하게 통합하여 향상된 기능과 사용자 경험을 제공합니다.">Seamlessly integrate cutting-edge AI technologies into your applications for enhanced functionality and user experience.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="icon">📱</div>
           <h3 data-en="Mobile App Development" data-ko="모바일 앱 개발">Mobile App Development</h3>
           <p data-en="Create powerful, intuitive mobile applications for iOS and Android platforms that leverage the latest AI capabilities." data-ko="최신 AI 기능을 활용하는 iOS 및 Android 플랫폼용 강력하고 직관적인 모바일 애플리케이션을 만듭니다.">Create powerful, intuitive mobile applications for iOS and Android platforms that leverage the latest AI capabilities.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="icon">💡</div>
           <h3 data-en="Smart Solutions" data-ko="스마트 솔루션">Smart Solutions</h3>
           <p data-en="Develop intelligent solutions tailored to your business needs, from machine learning models to automated systems." data-ko="머신러닝 모델부터 자동화 시스템까지 비즈니스 요구에 맞춘 지능형 솔루션을 개발합니다.">Develop intelligent solutions tailored to your business needs, from machine learning models to automated systems.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card reveal">
           <div class="icon">🚀</div>
           <h3 data-en="Innovation & Strategy" data-ko="혁신 및 전략">Innovation & Strategy</h3>
           <p data-en="Consulting services to help you navigate the AI landscape and implement innovative strategies for growth." data-ko="AI 환경을 탐색하고 성장을 위한 혁신적인 전략을 구현할 수 있도록 컨설팅 서비스를 제공합니다.">Consulting services to help you navigate the AI landscape and implement innovative strategies for growth.</p>
@@ -399,49 +679,52 @@
   </section>
 
   <!-- Our Apps Section -->
-  <section class="apps">
+  <section class="apps" id="apps">
     <div class="container">
-      <h2 data-en="Our Apps" data-ko="우리의 앱">Our Apps</h2>
-      <p class="subtitle" data-en="Explore the innovative applications we've developed" data-ko="우리가 개발한 혁신적인 애플리케이션을 살펴보세요">Explore the innovative applications we've developed</p>
-      
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="Products" data-ko="프로덕트">Products</span>
+        <h2 data-en="Our Apps" data-ko="우리의 앱">Our Apps</h2>
+        <p class="subtitle" data-en="Explore the innovative applications we've developed" data-ko="우리가 개발한 혁신적인 애플리케이션을 살펴보세요">Explore the innovative applications we've developed</p>
+      </div>
+
       <div class="app-grid">
         <!-- USDT Signal App -->
-        <div class="app-card">
-          <div class="app-image">📊</div>
+        <div class="app-card reveal">
+          <div class="app-image"><span>📊</span></div>
           <div class="app-content">
             <h3 data-en="USDT Signal" data-ko="USDT 시세 매매 알리미">USDT Signal</h3>
             <p data-en="Real-time cryptocurrency trading assistant that analyzes exchange rates and kimchi premium to provide optimal USDT trading timing with AI-powered alerts." data-ko="환율과 김치 프리미엄을 실시간으로 분석하여 최적의 테더 매매 타이밍을 AI 기반 알림으로 제공하는 암호화폐 거래 도우미입니다.">Real-time cryptocurrency trading assistant that analyzes exchange rates and kimchi premium to provide optimal USDT trading timing with AI-powered alerts.</p>
-            <a href="https://coinpang.org/app" target="_blank" class="app-link" data-en="Visit App" data-ko="앱 방문하기">Visit App</a>
+            <a href="https://coinpang.org/app" target="_blank" rel="noopener" class="app-link" data-en="Visit App" data-ko="앱 방문하기">Visit App</a>
           </div>
         </div>
 
         <!-- AI Face Reader App -->
-        <div class="app-card">
-          <div class="app-image">🔮</div>
+        <div class="app-card reveal">
+          <div class="app-image"><span>🔮</span></div>
           <div class="app-content">
             <h3 data-en="AI Face Reader" data-ko="AI 관상">AI Face Reader</h3>
             <p data-en="Discover unique personality insights and compatibility through AI-powered face analysis. Explore entertaining perspectives on yourself and others with a safe and private experience." data-ko="AI 기반 얼굴 분석을 통해 독특한 성격 통찰력과 궁합을 발견하세요. 안전하고 사적인 환경에서 자신과 타인에 대한 재미있는 관점을 탐색할 수 있습니다.">Discover unique personality insights and compatibility through AI-powered face analysis. Explore entertaining perspectives on yourself and others with a safe and private experience.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.smartcompany.facereader" target="_blank" class="app-link" data-en="Download App" data-ko="앱 다운로드">Download App</a>
+            <a href="https://play.google.com/store/apps/details?id=com.smartcompany.facereader" target="_blank" rel="noopener" class="app-link" data-en="Download App" data-ko="앱 다운로드">Download App</a>
           </div>
         </div>
 
         <!-- MyStyle App -->
-        <div class="app-card">
-          <div class="app-image">👗</div>
+        <div class="app-card reveal">
+          <div class="app-image"><span>👗</span></div>
           <div class="app-content">
             <h3 data-en="MyStyle" data-ko="스타일 미">MyStyle</h3>
             <p data-en="AI-powered personal style assistant that helps you discover and create your perfect look. Get personalized fashion recommendations and style insights tailored just for you." data-ko="완벽한 룩을 발견하고 만들 수 있도록 도와주는 AI 기반 개인 스타일 어시스턴트입니다. 당신만을 위한 맞춤형 패션 추천과 스타일 인사이트를 받아보세요.">AI-powered personal style assistant that helps you discover and create your perfect look. Get personalized fashion recommendations and style insights tailored just for you.</p>
-            <a href="https://coinpang.org/myStyleApp" target="_blank" class="app-link" data-en="Try Now" data-ko="지금 체험하기">Try Now</a>
+            <a href="https://coinpang.org/myStyleApp" target="_blank" rel="noopener" class="app-link" data-en="Try Now" data-ko="지금 체험하기">Try Now</a>
           </div>
         </div>
 
         <!-- CoinPang App -->
-        <div class="app-card">
-          <div class="app-image">💰</div>
+        <div class="app-card reveal">
+          <div class="app-image"><span>💰</span></div>
           <div class="app-content">
             <h3 data-en="CoinPang" data-ko="코인팡">CoinPang</h3>
             <p data-en="Comprehensive cryptocurrency platform providing real-time market data, price tracking, and intelligent trading tools to help you make informed investment decisions." data-ko="실시간 시장 데이터, 가격 추적 및 지능형 거래 도구를 제공하여 정보에 입각한 투자 결정을 내릴 수 있도록 돕는 종합 암호화폐 플랫폼입니다.">Comprehensive cryptocurrency platform providing real-time market data, price tracking, and intelligent trading tools to help you make informed investment decisions.</p>
-            <a href="https://coinpang.org" target="_blank" class="app-link" data-en="Visit Website" data-ko="웹사이트 방문">Visit Website</a>
+            <a href="https://coinpang.org" target="_blank" rel="noopener" class="app-link" data-en="Visit Website" data-ko="웹사이트 방문">Visit Website</a>
           </div>
         </div>
       </div>
@@ -449,21 +732,40 @@
   </section>
 
   <!-- About Section -->
-  <section class="about">
+  <section class="about" id="about">
     <div class="container">
-      <h2 data-en="About Us" data-ko="회사 소개">About Us</h2>
-      <p data-en="Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value." data-ko="Smart AI Company는 AI 기반 애플리케이션 개발의 최전선에 있습니다. 우리는 기술적 우수성과 창의적 혁신을 결합하여 기대를 충족시킬 뿐만 아니라 그것을 뛰어넘는 솔루션을 제공합니다. 우리의 전문가 팀은 복잡한 AI 기술을 실질적인 비즈니스 가치를 창출하는 사용자 친화적인 애플리케이션으로 변환하는 데 특화되어 있습니다.">Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value.</p>
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="Who We Are" data-ko="회사 소개">Who We Are</span>
+        <h2 data-en="About Us" data-ko="회사 소개">About Us</h2>
+      </div>
+      <div class="about-inner reveal">
+        <p data-en="Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value." data-ko="Smart AI Company는 AI 기반 애플리케이션 개발의 최전선에 있습니다. 우리는 기술적 우수성과 창의적 혁신을 결합하여 기대를 충족시킬 뿐만 아니라 그것을 뛰어넘는 솔루션을 제공합니다. 우리의 전문가 팀은 복잡한 AI 기술을 실질적인 비즈니스 가치를 창출하는 사용자 친화적인 애플리케이션으로 변환하는 데 특화되어 있습니다.">Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value.</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="num">4+</div>
+            <div class="label" data-en="Apps Launched" data-ko="출시한 앱">Apps Launched</div>
+          </div>
+          <div class="stat">
+            <div class="num">100%</div>
+            <div class="label" data-en="AI-Powered" data-ko="AI 기반">AI-Powered</div>
+          </div>
+          <div class="stat">
+            <div class="num">24/7</div>
+            <div class="label" data-en="Real-time Services" data-ko="실시간 서비스">Real-time Services</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section class="contact" id="contact">
     <div class="container">
-      <h2 data-en="Contact Us" data-ko="연락처">Contact Us</h2>
-      <div class="contact-info">
-        <p data-en="Ready to bring your AI project to life?" data-ko="AI 프로젝트를 실현할 준비가 되셨나요?">Ready to bring your AI project to life?</p>
-        <p data-en="Email us at:" data-ko="이메일:">Email us at:</p>
-        <p><a href="mailto:gunnylove@gmail.com">gunnylove@gmail.com</a></p>
+      <div class="contact-card reveal">
+        <span class="eyebrow" data-en="Contact" data-ko="연락처">Contact</span>
+        <h2 data-en="Ready to bring your AI project to life?" data-ko="AI 프로젝트를 실현할 준비가 되셨나요?">Ready to bring your AI project to life?</h2>
+        <p data-en="Tell us about your idea — we'd love to hear from you." data-ko="아이디어를 들려주세요. 언제든 환영합니다.">Tell us about your idea — we'd love to hear from you.</p>
+        <a href="mailto:gunnylove@gmail.com" class="btn btn-primary">gunnylove@gmail.com</a>
       </div>
     </div>
   </section>
@@ -476,27 +778,30 @@
   <script>
     let currentLang = 'en';
 
-    function changeLanguage(lang) {
+    function changeLanguage(lang, btn) {
       currentLang = lang;
-      
-      // Update button states
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
 
-      // Update all translatable elements
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
       document.querySelectorAll('[data-en]').forEach(element => {
-        if (lang === 'en') {
-          element.textContent = element.getAttribute('data-en');
-        } else if (lang === 'ko') {
-          element.textContent = element.getAttribute('data-ko');
-        }
+        element.textContent = element.getAttribute(lang === 'ko' ? 'data-ko' : 'data-en');
       });
 
-      // Update HTML lang attribute
       document.documentElement.lang = lang;
     }
+
+    // Reveal elements as they scroll into view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
