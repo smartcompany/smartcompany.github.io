@@ -41,6 +41,11 @@
       color: #fff;
     }
 
+    /* Keep Korean text from breaking mid-word */
+    html:lang(ko) body {
+      word-break: keep-all;
+    }
+
     body {
       font-family: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       line-height: 1.65;
@@ -623,8 +628,8 @@
         <a href="#contact" data-en="Contact" data-ko="연락처">Contact</a>
       </div>
       <div class="lang-switch">
-        <button class="lang-btn active" onclick="changeLanguage('en', this)">EN</button>
-        <button class="lang-btn" onclick="changeLanguage('ko', this)">KO</button>
+        <button class="lang-btn active" data-lang="en" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="ko" onclick="changeLanguage('ko')">KO</button>
       </div>
     </div>
   </nav>
@@ -778,11 +783,12 @@
   <script>
     let currentLang = 'en';
 
-    function changeLanguage(lang, btn) {
+    function applyLanguage(lang) {
       currentLang = lang;
 
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
 
       document.querySelectorAll('[data-en]').forEach(element => {
         element.textContent = element.getAttribute(lang === 'ko' ? 'data-ko' : 'data-en');
@@ -790,6 +796,33 @@
 
       document.documentElement.lang = lang;
     }
+
+    function changeLanguage(lang) {
+      applyLanguage(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    // Auto-select language: saved preference first, then detect visitors
+    // from Korea (timezone or browser language) -> ko, everyone else -> en.
+    (function initLanguage() {
+      let saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      if (saved === 'ko' || saved === 'en') {
+        applyLanguage(saved);
+        return;
+      }
+
+      let isKorea = false;
+      try {
+        isKorea = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Seoul';
+      } catch (e) {}
+      if (!isKorea) {
+        const langs = navigator.languages || [navigator.language || ''];
+        isKorea = langs.some(l => (l || '').toLowerCase().startsWith('ko'));
+      }
+
+      applyLanguage(isKorea ? 'ko' : 'en');
+    })();
 
     // Reveal elements as they scroll into view
     const observer = new IntersectionObserver((entries) => {
