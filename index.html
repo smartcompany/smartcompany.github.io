@@ -41,6 +41,11 @@
       color: #fff;
     }
 
+    /* Keep Korean text from breaking mid-word */
+    html:lang(ko) body {
+      word-break: keep-all;
+    }
+
     body {
       font-family: 'Inter', 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       line-height: 1.65;
@@ -623,8 +628,8 @@
         <a href="#contact" data-en="Contact" data-ko="연락처">Contact</a>
       </div>
       <div class="lang-switch">
-        <button class="lang-btn active" onclick="changeLanguage('en', this)">EN</button>
-        <button class="lang-btn" onclick="changeLanguage('ko', this)">KO</button>
+        <button class="lang-btn active" data-lang="en" onclick="changeLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="ko" onclick="changeLanguage('ko')">KO</button>
       </div>
     </div>
   </nav>
@@ -727,6 +732,26 @@
             <a href="https://coinpang.org" target="_blank" rel="noopener" class="app-link" data-en="Visit Website" data-ko="웹사이트 방문">Visit Website</a>
           </div>
         </div>
+
+        <!-- Dopamine Assets App -->
+        <div class="app-card reveal">
+          <div class="app-image"><span>📈</span></div>
+          <div class="app-content">
+            <h3 data-en="Dopamine Assets" data-ko="도파민 자산">Dopamine Assets</h3>
+            <p data-en="Real-time market scanner that surfaces top gainers and losers across US and Korean stocks, crypto, and commodities. Catch the assets that are really moving with the Dopamine Score, charts, news, and alerts in one clean view." data-ko="미국·한국 주식, 암호화폐, 원자재의 급등·급락 자산을 실시간으로 보여주는 시장 스캐너입니다. 가격과 거래량을 반영한 도파민 스코어와 차트, 뉴스, 알림으로 지금 움직이는 자산을 한눈에 포착하세요.">Real-time market scanner that surfaces top gainers and losers across US and Korean stocks, crypto, and commodities. Catch the assets that are really moving with the Dopamine Score, charts, news, and alerts in one clean view.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.smartcompany.dopamineAssets" target="_blank" rel="noopener" class="app-link" data-en="Download App" data-ko="앱 다운로드">Download App</a>
+          </div>
+        </div>
+
+        <!-- CarMap Link App -->
+        <div class="app-card reveal">
+          <div class="app-image"><span>🚗</span></div>
+          <div class="app-content">
+            <h3 data-en="CarMap Link" data-ko="CarMap Link">CarMap Link</h3>
+            <p data-en="Seamlessly connect your smartphone's navigation apps with your Tesla's built-in navigation. Pick a destination in Google Maps and send it to your car in one tap, with smart auto-completion and frequent destination memory." data-ko="스마트폰의 내비게이션 앱을 테슬라 내장 내비게이션과 매끄럽게 연결합니다. 구글 지도에서 목적지를 선택해 한 번의 탭으로 차량에 전송하고, 스마트 자동완성과 자주 가는 목적지 기억 기능을 활용하세요.">Seamlessly connect your smartphone's navigation apps with your Tesla's built-in navigation. Pick a destination in Google Maps and send it to your car in one tap, with smart auto-completion and frequent destination memory.</p>
+            <a href="https://apps.apple.com/app/carmap-link/id6755061619" target="_blank" rel="noopener" class="app-link" data-en="Download App" data-ko="앱 다운로드">Download App</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -742,7 +767,7 @@
         <p data-en="Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value." data-ko="Smart AI Company는 AI 기반 애플리케이션 개발의 최전선에 있습니다. 우리는 기술적 우수성과 창의적 혁신을 결합하여 기대를 충족시킬 뿐만 아니라 그것을 뛰어넘는 솔루션을 제공합니다. 우리의 전문가 팀은 복잡한 AI 기술을 실질적인 비즈니스 가치를 창출하는 사용자 친화적인 애플리케이션으로 변환하는 데 특화되어 있습니다.">Smart AI Company is at the forefront of AI-powered application development. We combine technical excellence with creative innovation to deliver solutions that not only meet but exceed expectations. Our team of experts specializes in transforming complex AI technologies into user-friendly applications that drive real business value.</p>
         <div class="stats">
           <div class="stat">
-            <div class="num">4+</div>
+            <div class="num">6+</div>
             <div class="label" data-en="Apps Launched" data-ko="출시한 앱">Apps Launched</div>
           </div>
           <div class="stat">
@@ -778,11 +803,12 @@
   <script>
     let currentLang = 'en';
 
-    function changeLanguage(lang, btn) {
+    function applyLanguage(lang) {
       currentLang = lang;
 
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+      });
 
       document.querySelectorAll('[data-en]').forEach(element => {
         element.textContent = element.getAttribute(lang === 'ko' ? 'data-ko' : 'data-en');
@@ -790,6 +816,33 @@
 
       document.documentElement.lang = lang;
     }
+
+    function changeLanguage(lang) {
+      applyLanguage(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    // Auto-select language: saved preference first, then detect visitors
+    // from Korea (timezone or browser language) -> ko, everyone else -> en.
+    (function initLanguage() {
+      let saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      if (saved === 'ko' || saved === 'en') {
+        applyLanguage(saved);
+        return;
+      }
+
+      let isKorea = false;
+      try {
+        isKorea = Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Seoul';
+      } catch (e) {}
+      if (!isKorea) {
+        const langs = navigator.languages || [navigator.language || ''];
+        isKorea = langs.some(l => (l || '').toLowerCase().startsWith('ko'));
+      }
+
+      applyLanguage(isKorea ? 'ko' : 'en');
+    })();
 
     // Reveal elements as they scroll into view
     const observer = new IntersectionObserver((entries) => {
